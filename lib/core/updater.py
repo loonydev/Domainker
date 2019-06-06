@@ -20,22 +20,23 @@ def tree(paths):
 
 def scheduled_update():
 	today = date.today()
-	last_check = datetime.strptime(open("lib/core/update.sync","r").read().strip(),'%Y-%m-%d').date()
-	diff = (today - last_check).days
-
+	diff = 0
 	if not os.path.isfile("lib/core/update.sync"):
 		open("lib/core/update.sync","w").write(str(today))
-		return 0
+		diff = 1000 # It's first time and we must check update
+	else:
+		last_check = datetime.strptime(open("lib/core/update.sync","r").read().strip(),'%Y-%m-%d').date()
+		diff = (today - last_check).days
 
 	if args.force_update:
 		print(" %s[%s*%s]%s: Forced Update is Running" % (Fore.BLUE,Fore.RED,Fore.BLUE,Fore.RESET))
 		open("lib/core/update.sync","w").write(str(today))
 		return 1
 
-	if  diff >= 5:
+	if (diff >= 5) and not (args.disable_update):
 		print(" %s[%s*%s]%s: Scheduled Automatic Update is Running" % (Fore.BLUE,Fore.RED,Fore.BLUE,Fore.RESET))
 		open("lib/core/update.sync","w").write(str(today))
-		return 1
+		# return 1
 	return 0
 
 def remote_version(current_version):
@@ -62,4 +63,3 @@ def remote_sync(repo_path):
 			open(repo_path,"w").write(remote_code)
 		else:
 			print("  |> [%sUP-TO-DATE%s]: %s" % (Fore.GREEN,Fore.RESET,repo_path))
-

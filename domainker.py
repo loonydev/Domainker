@@ -13,6 +13,7 @@ def scan(endpoint,timeout=30):
 		STRUTS = chkstruts(endpoint,timeout)                            if args.all or args.struts else None,
 		SPF    = chkspf(endpoint,timeout)                               if args.all or args.spf else None,
 		CACHE  = chkpoisoning(urlify(endpoint)['URL_FILE'],timeout)     if args.all or args.cache_poisoning else None,
+		PARAM  = paramm(endpoint,timeout)     							if args.all or args.param_miner else None,
 
 	)
 
@@ -25,10 +26,10 @@ if(scheduled_update()):
 		"lib/plugins/experimental/*.py",
 		"lib/plugins/*.py",
 		"lib/core/*.py"
-	])) 
+	]))
 
 
-for module in modules: 
+for module in modules:
 	if module: break
 else:
 	cli.no_options()

@@ -13,17 +13,19 @@ from lib.plugins.crlf import chkcrlf
 from lib.plugins.url import chkurl
 from lib.plugins.aws import chkaws
 from lib.plugins.put import chkput
+from lib.plugins.paramm import paramm
 
 
 version = 1.75
 modules = [
 	args.url,
 	args.aws,
-	args.dns, 
+	args.dns,
 	args.crlf,
 	args.cache_poisoning,
 	args.struts,
 	args.spf,
 	args.put,
+	args.param_miner,
 	args.all
 ]

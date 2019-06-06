@@ -23,6 +23,11 @@ parser.add_argument('-q','--dns',action='store_true', help='Get Target Cname')
 
 parser.add_argument('-p','--cache-poisoning',action='store_true', help='Check For Cache Poisoning')
 
+parser.add_argument('-pM','--param-miner',action='store_true', help='Extract list of parameter')
+
+# Use this param when develops new features. Add because lost my update. Lol
+parser.add_argument('-du','--disable-update',action='store_true', help='Run All Plugins [MEMORY HEAVY]')
+
 parser.add_argument('-A','--all',action='store_true', help='Run All Plugins [MEMORY HEAVY]')
 
 parser.add_argument('-uu','--force-update',action='store_true', help='Force auto-update to run')
